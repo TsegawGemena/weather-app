@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production"
-},
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TsegawGemena/weather-app.git"
@@ -14,7 +14,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/TsegawGemena/weather-app/issues"
   },
