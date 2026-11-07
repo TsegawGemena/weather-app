@@ -1,5 +1,14 @@
 *{
     margin:0;
-    backround-color:rgb(4, 5, 5);
+    background-color:black;
+    color:white;
 
+ 
+}
+#search{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:20px;
+    padding:30px;
 }

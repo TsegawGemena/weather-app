@@ -1,4 +1,17 @@
 export function displayWeather(){
     const app = document.querySelector("#app");
-    app.innerHTML = '<h1>Weather Information</h1>';
+
+    const citySection= document.createElement("section");
+    citySection.classList.add("city-section");
+
+    const cityName=document.createElement("div");
+    cityName.classList.add("city-name");
+    
+    cityName.textContent=weatherData.cityName;
+
+
+
+
+    
+    
 }
