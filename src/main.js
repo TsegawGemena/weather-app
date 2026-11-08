@@ -1,4 +1,4 @@
-import {listenForSearch,displayWeather,showLoading} from "./dom.js";
+import {listenForSearch,displayWeather,showLoading,hideLoading} from "./dom.js";
 import {getWeather} from "./api.js";
 import {processWeatherData} from "./weather.js";
 
@@ -12,7 +12,7 @@ export function initializeApp(){
             displayWeather(weatherData);
         }
         catch(error){
-            console.error("error");
+            console.error("Failed to fetch weather:",error);
 
         }
         finally{

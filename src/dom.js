@@ -1,6 +1,7 @@
 const searchForm = document.querySelector("#search form");
 const cityInput = document.querySelector("#city");
 const app = document.querySelector("#app");
+const loading= document.querySelector("#loading");
 
 export function listenForSearch(callback){
     searchForm.addEventListener("submit",(event)=>{
@@ -37,12 +38,10 @@ export function displayWeather(weatherData){
     
 }
 export function showLoading(){
-    const app = document.querySelector("#app");
-    app.textContent="Loading weather...";
+    loading.textContent="Loading weather...";
 
 }
 export function hideLoading(){
-    const loading = app.querySelector("loading");
     loading.textContent="";
    
 
