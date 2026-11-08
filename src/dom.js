@@ -1,48 +1,48 @@
-const searchForm = document.querySelector("#search form");
-const cityInput = document.querySelector("#city");
-const app = document.querySelector("#app");
-const loading= document.querySelector("#loading");
+export function listenForSearch(callback) {
+    const searchForm = document.querySelector("#search form");
+    const cityInput = document.querySelector("#city");
 
-export function listenForSearch(callback){
-    searchForm.addEventListener("submit",(event)=>{
+    searchForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
         const city = cityInput.value.trim();
-        if(city){
+
+        if (city) {
             callback(city);
-
         }
-
     });
 }
 
+export function displayWeather(weatherData) {
+    const app = document.querySelector("#app");
 
-export function displayWeather(weatherData){
-    
-    // const citySection= document.createElement("section");
-    // citySection.classList.add("city-section");
-
-    // const cityName=document.createElement("div");
-    // cityName.classList.add("city-name");
-
-    // cityName.textContent=weatherData.cityName;
-    const  city = document.querySelector(".city-name");
-    const temperature = document.querySelector(".temperature");
-    const conditions = document.querySelector(".conditions");
-    const humidity =document.querySelector(".humidity");
+    const city = app.querySelector(".city-name");
+    const temperature = app.querySelector(".temperature");
+    const conditions = app.querySelector(".conditions");
+    const humidity = app.querySelector(".humidity");
 
     city.textContent = weatherData.city;
-    temperature.textContent =`${weatherData.temperature}°C`;
+    temperature.textContent = `${weatherData.temperature}°C`;
     conditions.textContent = weatherData.conditions;
     humidity.textContent = `Humidity: ${weatherData.humidity}%`;
-    
 }
-export function showLoading(){
-    loading.textContent="Loading weather...";
 
+export function showLoading() {
+    const loading = document.querySelector("#loading");
+    loading.textContent = "Loading weather...";
 }
-export function hideLoading(){
-    loading.textContent="";
-   
 
+export function hideLoading() {
+    const loading = document.querySelector("#loading");
+    loading.textContent = "";
+}
+
+export function showError(message) {
+    const error = document.querySelector("#error");
+    error.textContent = message;
+}
+
+export function clearError() {
+    const error = document.querySelector("#error");
+    error.textContent = "";
 }

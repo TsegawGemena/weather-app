@@ -1,10 +1,11 @@
-import {listenForSearch,displayWeather,showLoading,hideLoading} from "./dom.js";
+import {listenForSearch,displayWeather,showLoading,hideLoading,showError,clearError} from "./dom.js";
 import {getWeather} from "./api.js";
 import {processWeatherData} from "./weather.js";
 
 
 export function initializeApp(){
     listenForSearch(async(city)=>{
+        clearError();
         showLoading();
         try{
             const data= await getWeather(city);
@@ -13,6 +14,7 @@ export function initializeApp(){
         }
         catch(error){
             console.error("Failed to fetch weather:",error);
+            showError(error.message);
 
         }
         finally{
