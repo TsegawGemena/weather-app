@@ -6,9 +6,19 @@ import {processWeatherData} from "./weather.js";
 export function initializeApp(){
     listenForSearch(async(city)=>{
         showLoading();
-        const data= await getWeather(city);
-        const weatherData=processWeatherData(data);
-        displayWeather(weatherData);
+        try{
+            const data= await getWeather(city);
+            const weatherData=processWeatherData(data);
+            displayWeather(weatherData);
+        }
+        catch(error){
+            console.error("error");
+
+        }
+        finally{
+            hideLoading();
+        }
+
 
 
 

@@ -1,5 +1,6 @@
 const searchForm = document.querySelector("#search form");
 const cityInput = document.querySelector("#city");
+const app = document.querySelector("#app");
 
 export function listenForSearch(callback){
     searchForm.addEventListener("submit",(event)=>{
@@ -16,8 +17,7 @@ export function listenForSearch(callback){
 
 
 export function displayWeather(weatherData){
-    const app = document.querySelector("#app");
-
+    
     // const citySection= document.createElement("section");
     // citySection.classList.add("city-section");
 
@@ -34,13 +34,16 @@ export function displayWeather(weatherData){
     temperature.textContent =`${weatherData.temperature}°C`;
     conditions.textContent = weatherData.conditions;
     humidity.textContent = `Humidity: ${weatherData.humidity}%`;
-
-
-    
     
 }
 export function showLoading(){
     const app = document.querySelector("#app");
     app.textContent="Loading weather...";
+
+}
+export function hideLoading(){
+    const loading = app.querySelector("loading");
+    loading.textContent="";
+   
 
 }
