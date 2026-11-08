@@ -5,7 +5,7 @@ export function listenForSearch(callback){
     searchForm.addEventListener("submit",(event)=>{
         event.preventDefault();
 
-        const city = cityInput.Value.trim();
+        const city = cityInput.value.trim();
         if(city){
             callback(city);
 

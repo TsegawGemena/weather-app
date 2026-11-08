@@ -1,9 +1,17 @@
-import {listenForSearch} from "./dom.js";
+import {listenForSearch,displayWeather} from "./dom.js";
 import {getWeather} from "./api.js";
 import {processWeatherData} from "./weather.js";
-import {displayWeather} from "./dom.js";
 
 
 export function initializeApp(){
+    listenForSearch(async(city)=>{
+        const data= await getWeather(city);
+        const weatherData=processWeatherData(data);
+        displayWeather(weatherData);
+        
+
+
+    });
+
 
 }
