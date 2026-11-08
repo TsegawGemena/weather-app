@@ -1,48 +1,49 @@
-export function listenForSearch(callback) {
-    const searchForm = document.querySelector("#search form");
-    const cityInput = document.querySelector("#city");
+import {
+    listenForSearch,
+    displayWeather,
+    showLoading,
+    hideLoading,
+    showError,
+    clearError
+} from "./dom.js";
 
-    searchForm.addEventListener("submit", (event) => {
-        event.preventDefault();
+import { getWeather } from "./api.js";
+import { processWeatherData } from "./weather.js";
 
-        const city = cityInput.value.trim();
+export function initializeApp() {
+    let currentWeather = null;
+    let unit = "C";
 
-        if (city) {
-            callback(city);
+    const unitButton = document.querySelector("#unit-toggle");
+
+    unitButton.addEventListener("click", () => {
+        if (!currentWeather) return;
+
+        unit = unit === "C" ? "F" : "C";
+
+        displayWeather(currentWeather, unit);
+
+        unitButton.textContent =
+            unit === "C" ? "Switch to °F" : "Switch to °C";
+    });
+
+    listenForSearch(async (city) => {
+        clearError();
+        showLoading();
+
+        try {
+            const data = await getWeather(city);
+
+            currentWeather = processWeatherData(data);
+
+            displayWeather(currentWeather, unit);
+
+        } catch (error) {
+            console.error("Failed to fetch weather:", error);
+            showError(error.message);
+
+        } finally {
+            hideLoading();
         }
     });
-}
-
-export function displayWeather(weatherData) {
-    const app = document.querySelector("#app");
-
-    const city = app.querySelector(".city-name");
-    const temperature = app.querySelector(".temperature");
-    const conditions = app.querySelector(".conditions");
-    const humidity = app.querySelector(".humidity");
-
-    city.textContent = weatherData.city;
-    temperature.textContent = `${weatherData.temperature}°C`;
-    conditions.textContent = weatherData.conditions;
-    humidity.textContent = `Humidity: ${weatherData.humidity}%`;
-}
-
-export function showLoading() {
-    const loading = document.querySelector("#loading");
-    loading.textContent = "Loading weather...";
-}
-
-export function hideLoading() {
-    const loading = document.querySelector("#loading");
-    loading.textContent = "";
-}
-
-export function showError(message) {
-    const error = document.querySelector("#error");
-    error.textContent = message;
-}
-
-export function clearError() {
-    const error = document.querySelector("#error");
-    error.textContent = "";
 }
