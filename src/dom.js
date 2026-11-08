@@ -25,12 +25,12 @@ export function displayWeather(weatherData){
     // cityName.classList.add("city-name");
 
     // cityName.textContent=weatherData.cityName;
-    const  cityName = document.querySelector(".city-name");
+    const  city = document.querySelector(".city-name");
     const temperature = document.querySelector(".temperature");
     const conditions = document.querySelector(".conditions");
     const humidity =document.querySelector(".humidity");
 
-    cityName.textContent = weatherData.cityName;
+    city.textContent = weatherData.city;
     temperature.textContent =`${weatherData.temperature}°C`;
     conditions.textContent = weatherData.conditions;
     humidity.textContent = `Humidity: ${weatherData.humidity}%`;
@@ -38,4 +38,9 @@ export function displayWeather(weatherData){
 
     
     
+}
+export function showLoading(){
+    const app = document.querySelector("#app");
+    app.textContent="Loading weather...";
+
 }
